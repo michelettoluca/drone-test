@@ -1,10 +1,29 @@
 kind: pipeline
 type: docker
-name: default
+name: main
 
 steps:
   - name: build
     image: golang
     commands:
       - go build
-      - ls
+      - echo "main"
+trigger:
+  branch:
+    - main
+
+---
+
+kind: pipeline
+type: docker
+name: develop
+
+steps:
+  - name: build
+    image: golang
+    commands:
+      - go build
+      - echo "develop"
+trigger:
+  branch:
+    - develop
